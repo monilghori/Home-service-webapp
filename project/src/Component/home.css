@@ -1,0 +1,16 @@
+.outterr{
+    color: #33186B;
+}
+.welcome{
+    justify-content: center;
+    text-align: center;
+    padding: 100px;
+    display: block;
+}
+.features{
+    justify-content: center;
+    text-align: center;
+    background-color: #FAEED1;
+    padding:100px;
+    display: block;
+}
