@@ -18,21 +18,31 @@
         {
             "id" : 1,
             "name" : "NestCrafters",
-            "description" : "This is service 1"
+            "description" : "This is service 1fjkabjbjfkiahfihsjfjbsbf fnkfn fkanf nnonos fakjnfanf fnafnoajf fioejfk goingondklnmg gnenflknv o",
+            "logo" : "https://img.freepik.com/free-vector/colorful-bird-illustration-gradient_343694-1741.jpg?size=626&ext=jpg&ga=GA1.1.2135494743.1694412495&semt=sph"
         },
         {
             "id" : 2,
             "name" : "DomiFix",
-            "description" : "This is service 2"
+            "description" : "This is service 2",
+            "logo" : "https://img.freepik.com/premium-vector/m-letter-logo-vector-flat-design-template_617585-6362.jpg?size=626&ext=jpg&ga=GA1.1.2135494743.1694412495&semt=sph"
         },
         {
             "id" : 3,
             "name" : "ProHomeCare",
-            "description" : "This is service 3"
+            "description" : "This is service 3",
+            "logo" : "https://img.freepik.com/premium-photo/eco-logo-tree-logo-nature-logo_862994-3551.jpg?size=626&ext=jpg&ga=GA1.1.2135494743.1694412495&semt=sph"
         },
         {
             "id" : 4,
             "name" : "Homeward Heroes",
-            "description" : "This is service 4"
+            "description" : "This is service 4",
+            "logo" : "https://img.freepik.com/premium-vector/monogram-pb-logo_477193-187.jpg?size=626&ext=jpg&ga=GA1.1.2135494743.1694412495&semt=sph"
+        },
+        {
+            "id" : 5,
+            "name" : "HomeFix",
+            "description" : "This is service 5",
+            "logo" : "https://img.freepik.com/free-vector/initial-ac-logo-design-combination-icon_826849-694.jpg?size=626&ext=jpg&ga=GA1.1.2135494743.1694412495&semt=sph"
         }]
 }
