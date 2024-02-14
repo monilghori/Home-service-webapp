@@ -1,0 +1,38 @@
+{
+    "users" : [
+        {
+            "id" : 1,
+            "name" : "Monil ghori",
+            "email" : "monilghori46@gmail.com",
+            "password" : "monil343"
+        },
+        {
+            "id" : 2,
+            "name" : "Raj Ghori",
+            "email" : "rajghori@gmail.com",
+            "password" : "raj123"
+        }
+    ],
+
+    "services_provider" : [
+        {
+            "id" : 1,
+            "name" : "NestCrafters",
+            "description" : "This is service 1"
+        },
+        {
+            "id" : 2,
+            "name" : "DomiFix",
+            "description" : "This is service 2"
+        },
+        {
+            "id" : 3,
+            "name" : "ProHomeCare",
+            "description" : "This is service 3"
+        },
+        {
+            "id" : 4,
+            "name" : "Homeward Heroes",
+            "description" : "This is service 4"
+        }]
+}
