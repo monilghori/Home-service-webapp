@@ -78,7 +78,7 @@
     box-sizing: border-box;
     font-size: 14px;
   }
-  .form button {
+  .form .login-btn {
     font-family: "Roboto", sans-serif;
     text-transform: uppercase;
     outline: 0;
@@ -91,6 +91,9 @@
     -webkit-transition: all 0.3 ease;
     transition: all 0.3 ease;
     cursor: pointer;
+  }
+  .form .login-btn:hover{
+    background: #45a049;
   }
   
   .form .message {

@@ -41,7 +41,7 @@ const Login = () => {
 
               {error && <div className="error_msg">{error}</div>}
 
-              <button type="submit">Login</button>
+              <button type="submit" className="login-btn">Login</button>
               <p className="message">
                 Not Registerd? <a href="/register">Create an account</a>
               </p>
