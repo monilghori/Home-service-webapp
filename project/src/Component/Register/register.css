@@ -112,7 +112,7 @@
   box-sizing: border-box;
   font-size: 14px;
 }
-.form button {
+.form .rgs-btn {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
@@ -126,7 +126,9 @@
   transition: all 0.3 ease;
   cursor: pointer;
 }
-
+.form .rgs-btn:hover{
+  background: #45a049;
+}
 .form .message {
   margin: 15px 0 0;
   color: #b3b3b3;

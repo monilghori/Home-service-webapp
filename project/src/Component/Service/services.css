@@ -34,9 +34,9 @@
     border-radius: 5px;
     cursor: pointer;
     margin-top: 10px;
-  }
+  } 
   
-  .service-buttonx:hover {
+  .service-button:hover {
     background-color: #211951;
     box-shadow: 0 0 10px 0 #535C91;
   }

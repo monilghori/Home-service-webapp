@@ -105,6 +105,11 @@
     color: #4caf50;
     text-decoration: none;
   }
+  .form .message a:hover
+  {
+    color: #211951;
+    text-shadow: 1px 0px 0px #535C91;
+  }
   .form .register-form {
     display: none;
   }

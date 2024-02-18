@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom"
 import "./register.css";
 
 const Register = () => {
@@ -58,7 +59,7 @@ const Register = () => {
     <>
       <div className="out">
         <div className="login-page">
-          <h1 style={{ textAlign: "center" }}>Create Account</h1>
+          <h1 style={{ textAlign: "center"}}>Create Account</h1>
           <div className="form">
             <form className="login-form" onSubmit={handleSubmit}>
               <input
@@ -120,9 +121,9 @@ const Register = () => {
               </div>
               {error && <div className="error_msg">{error}</div>}
 
-              <button type="submit">create account</button>
+              <button className="rgs-btn" type="submit">create account</button>
               <p className="message">
-                Already have account! <a href="/login">Login</a>
+                Already have account! <Link to="/login" >Login</Link>
               </p>
             </form>
             {/* <button className='login-with-google-btn'>

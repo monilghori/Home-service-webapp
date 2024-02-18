@@ -1,4 +1,5 @@
 // import React from "react"
+import { FeatureCard } from "../FeatureCard/FeatureCard";
 import "./home.css"
 
 const Home = () => {
@@ -11,6 +12,11 @@ const Home = () => {
         <div className="features">
           <h6>Features</h6>
           <h1>Features</h1>
+          <div className="cards">
+          <FeatureCard />
+          <FeatureCard />
+          </div>
+          
         </div>
       </div>
     </>

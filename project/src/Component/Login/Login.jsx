@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom"
 import "./login.css";
 
 const Login = () => {
@@ -43,7 +44,7 @@ const Login = () => {
 
               <button type="submit" className="login-btn">Login</button>
               <p className="message">
-                Not Registerd? <a href="/register">Create an account</a>
+                Not Registerd? <Link to="/register">Create an account</Link>
               </p>
             </form>
           </div>

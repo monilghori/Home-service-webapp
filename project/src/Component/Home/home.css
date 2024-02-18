@@ -14,3 +14,7 @@
     padding:100px;
     display: block;
 }
+  .cards{
+    display: flex;
+    /* padding: 150px; */
+  }
