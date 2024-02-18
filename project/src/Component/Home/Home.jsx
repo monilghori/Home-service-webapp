@@ -1,5 +1,6 @@
 // import React from "react"
 import { FeatureCard } from "../FeatureCard/FeatureCard";
+import data from "../../../features";
 import "./home.css"
 
 const Home = () => {
@@ -13,8 +14,11 @@ const Home = () => {
           <h6>Features</h6>
           <h1>Features</h1>
           <div className="cards">
-          <FeatureCard />
-          <FeatureCard />
+          {
+            data.map((item) => {
+              return <FeatureCard key={item.id} title={item.title} description={item.description} img={item.img} alt={item.alt}/>
+            })
+          }
           </div>
           
         </div>

@@ -1,41 +1,30 @@
-// import React from 'react'
-
-// export const FeatureCard = () => {
-//   return (
-//     <div className="relative h-[400px] w-[300px] rounded-md">
-//       <img
-//         src="https://images.unsplash.com/photo-1546961329-78bef0414d7c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHVzZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60"
-//         alt="AirMax Pro"
-//         className="z-0 h-full w-full rounded-md object-cover"
-//       />
-//       <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
-//       <div className="absolute bottom-4 left-4 text-left">
-//         <h1 className="text-lg font-semibold text-white">Delba</h1>
-//         <p className="mt-2 text-sm text-gray-300">
-//           Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, debitis?
-//         </p>
-//         <button className="mt-2 inline-flex cursor-pointer items-center text-sm font-semibold text-white">
-//           View Profile &rarr;
-//         </button>
-//       </div>
-//     </div>
-//   )
-// }
 import React from 'react';
 import './FeatureCard.css'; // Ensure this import is correct based on your file structure
+import PropTypes from 'prop-types';
 
-export const FeatureCard = () => {
+
+
+export const FeatureCard = (props) => {
+
+    FeatureCard.propTypes = {
+        id: PropTypes.number.isRequired,
+        title: PropTypes.string.isRequired,
+        description: PropTypes.string.isRequired,
+        img: PropTypes.string.isRequired,
+        alt: PropTypes.string.isRequired // Not marked as required assuming an image might not always be present
+      };
+    
   return (
     <div className="feature-card">
       <img
-        src="https://images.unsplash.com/photo-1546961329-78bef0414d7c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHVzZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60"
-        alt="AirMax Pro"
+        src={props.img}
+        alt={props.alt}
       />
       <div className="gradient-overlay"></div>
       <div className="card-content">
-        <h1>Delba</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, debitis?</p>
-        <button>View Profile &rarr;</button>
+        <h1>{props.title}</h1>
+        <p>{props.description}</p>
+        <button>View more &rarr;</button>
       </div>
     </div>
   );

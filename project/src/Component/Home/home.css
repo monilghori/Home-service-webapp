@@ -11,10 +11,16 @@
     justify-content: center;
     text-align: center;
     background-color: #FAEED1;
-    padding:100px;
+    padding-top:10px;
     display: block;
 }
   .cards{
-    display: flex;
+    /* display: flex;
+    flex-wrap: wrap; */
     /* padding: 150px; */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
   }
