@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Register from "./Component/Register/Register";
 import AboutUs from "./Component/About Us/AboutUs";
 import Services from "./Component/Service/Services";
+import ServiceProvider from "./Component/ServiceProvider/ServiceProvider"
 import "./App.css";
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/aboutus" element={<AboutUs />} />
           <Route path="/servicesprovider" element={<Services />} />
+          <Route path="/servicesprovider/:id" element={<ServiceProvider />} />
         </Routes>
       </BrowserRouter>
     </>
