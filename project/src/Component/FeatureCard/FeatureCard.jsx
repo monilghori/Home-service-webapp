@@ -5,14 +5,6 @@ import PropTypes from 'prop-types';
 
 
 export const FeatureCard = (props) => {
-
-    FeatureCard.propTypes = {
-        id: PropTypes.number.isRequired,
-        title: PropTypes.string.isRequired,
-        description: PropTypes.string.isRequired,
-        img: PropTypes.string.isRequired,
-        alt: PropTypes.string.isRequired // Not marked as required assuming an image might not always be present
-      };
     
   return (
     <div className="feature-card">

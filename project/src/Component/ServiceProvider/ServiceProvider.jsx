@@ -1,57 +1,8 @@
-// import React, { useEffect } from 'react'
-// import axios from "axios";
-// import { useState } from "react";
-// import { useParams } from 'react-router-dom';
-// import "./ServiceProvider.css"
-
-// const ServiceProvider = () => {
-//     const [servicesData, setServicesData] = useState([]);
-//     const [isModalOpen, setIsModalOpen] = useState(false);
-//     const [formInputs, setFormInputs] = useState({
-//         name: '',
-//         date: '',
-//         serviceType: '',
-//         description: ''
-//     });
-
-//     useEffect (() => {
-//         axios("http://localhost:3000/services_provider")
-//     .then((res) => {
-//       setServicesData(res.data);
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
-//     },[])
-  
-    
-//     const bookService = () => {}
-
-//     const param = useParams()
-//   return (
-//     <>
-//         {
-//             servicesData.map((service) => (
-//                 service.id === param.id && (
-//                     <div className="service-details-card" key = {service.id}>
-//                       <h2>{service.name}</h2>
-//                       <img src={service.logo} alt={service.name} />
-//                       <p>{service.description}</p>
-//                       <button onClick={() => bookService(service.id)}>Book Service</button>
-//                     </div>
-//                   )
-//             ))
-//         }
-//     </>
-//   )
-// }
-
-// export default ServiceProvider
-
-
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import { useParams } from 'react-router-dom';
+import { ToastContainer , toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';    
 import "./ServiceProvider.css";
 
 const ServiceProvider = () => {
@@ -90,6 +41,22 @@ const ServiceProvider = () => {
         setIsModalOpen(true);
     };
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setIsModalOpen(false)
+        setFormInputs({})
+        toast.success('Service Booked Successfully', {
+            position: "top-right",
+            autoClose: 5000, 
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            closeButton: false, 
+        });
+    }
+
     return (
         <>
             {servicesData.map((service) => (
@@ -99,6 +66,7 @@ const ServiceProvider = () => {
                       <img src={service.logo} alt={service.name} />
                       <p>{service.description}</p>
                       <button onClick={() => bookService(service.id)}>Book Service</button>
+                      <ToastContainer />
                     </div>
                 )
             ))}
@@ -121,7 +89,8 @@ const ServiceProvider = () => {
                         </select>
                         <label>Description:</label>
                         <textarea name="description" value={formInputs.description} onChange={handleInputChange}></textarea>
-                        <button type="submit" disabled={!allFieldsFilled}>Submit</button>
+                        <button type="submit" disabled={!allFieldsFilled} onClick={handleSubmit}>Submit</button>
+                        
                         <button onClick={() => setIsModalOpen(false)}>Close</button>
                     </form>
                     
