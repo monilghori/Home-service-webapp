@@ -7,6 +7,7 @@ import AboutUs from "./Component/About Us/AboutUs";
 import Services from "./Component/Service/Services";
 import ServiceProvider from "./Component/ServiceProvider/ServiceProvider"
 import "./App.css";
+import RequestList from "./ServiceProvider/RequestList/RequestList";
 
 function App() {
   return (
@@ -21,6 +22,8 @@ function App() {
           <Route path="/aboutus" element={<AboutUs />} />
           <Route path="/servicesprovider" element={<Services />} />
           <Route path="/servicesprovider/:id" element={<ServiceProvider />} />
+
+          <Route path="/requests" element={<RequestList />} />
         </Routes>
       </BrowserRouter>
     </>
