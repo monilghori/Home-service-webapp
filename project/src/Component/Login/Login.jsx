@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import "./login.css";
 
 const Login = () => {
+  const [role, setRole] = useState("");
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -16,6 +17,72 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      let url;
+      let res;
+
+      if (role === "User") {
+        url = "http://localhost:3000/student/login";
+
+        res = await axios.post(
+          url,
+          {
+            email: data.email,
+            password: data.password,
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        console.log(res.data);
+        if (res.data.success === true) {
+          navigate("../home");
+
+          localStorage.clear();
+          localStorage.setItem("user", JSON.stringify());
+        } else {
+          setError(res.data.message);
+        }
+      } 
+      else if (role === "Service Provider") {
+        url = "http://localhost:3000/faculty/login";
+
+        res = await axios.post(
+          url,
+          {
+            email: data.email,
+            password: data.password,
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        if (res.data.success === true) {
+          navigate("../request");
+          console.log(res.data);
+          localStorage.clear();
+          localStorage.setItem("serviceprovider", JSON.stringify()); 
+        } else {
+          setError(res.data.message);
+        }
+      } 
+       else {
+          setError(res.data.message);
+        }
+    } catch (error) {
+      if (
+        error.response &&
+        error.response.status >= 400 &&
+        error.response.status <= 500
+      ) {
+        setError(error.response.data.message);
+      }
+    }
   };
 
   return (
@@ -25,6 +92,18 @@ const Login = () => {
           <h1 style={{ textAlign: "center" }}>Login</h1>
           <div className="form">
             <form className="login-form" onSubmit={handleSubmit}>
+            <select
+                value={role}
+                onChange={(e) => setRole(e.target.value)}
+                className="login-select"
+                required
+              >
+                <option disabled={true} value="">
+                  Select Role
+                </option>
+                <option value="User">User</option>
+                <option value="Service Provider">Service Provider</option>
+              </select>
               <input
                 type="text"
                 name="email"
