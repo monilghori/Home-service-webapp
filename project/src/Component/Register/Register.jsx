@@ -100,7 +100,7 @@ const Register = () => {
         role === "User" ? userData : serviceProviderdata
       );
       console.log(res.data.message);
-      // navigate("../login"); // Assuming navigate function is defined somewhere
+      navigate("../login"); 
     } catch (error) {
       if (
         error.response &&

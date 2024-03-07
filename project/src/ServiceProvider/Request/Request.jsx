@@ -21,12 +21,13 @@ const Request = ({ request, isExpanded, onToggleDescription, onStatusChange }) =
                   onStatusChange(e.target.value);
                   setEditStatus(false); // Exit edit mode after selection
                 }}
-                onBlur={() => setEditStatus(false)} // Exit edit mode on blur
-                autoFocus // Automatically focus the select to enable immediate editing
+                onBlur={() => setEditStatus(false)}
+                autoFocus 
               >
                 <option value="Pending">Pending</option>
-                <option value="Approved">Approved</option>
-                <option value="Rejected">Rejected</option>
+                <option value="Inprogress">Inprogress</option>
+                <option value="Completed">Completed</option>
+                
               </select>
             ) : request.status}
           </div>

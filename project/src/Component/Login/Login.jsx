@@ -63,7 +63,7 @@ const Login = () => {
         );
 
         if (res.data.success === true) {
-          navigate("../request");
+          navigate("../requests");
           console.log(res.data);
           localStorage.clear();
           localStorage.setItem("serviceprovider", JSON.stringify()); 

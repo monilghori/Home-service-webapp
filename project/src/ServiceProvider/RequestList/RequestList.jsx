@@ -4,7 +4,7 @@ import Request from '../Request/Request';
 
 const RequestList = () => {
   
-  const [requests, setRequests] = useState([ // Initialize requests state
+  const [requests, setRequests] = useState([ 
   {
     type: "Technical Support",
     status: "Pending",
@@ -12,12 +12,12 @@ const RequestList = () => {
   },
   {
     type: "Feature Request",
-    status: "Approved",
+    status: "Pending",
     description: "Request to add a dark mode feature to the application for better nighttime usability."
   },
   {
     type: "Bug Report",
-    status: "Rejected",
+    status: "Pending",
     description: "Submission of a bug where user profiles were not saving updated information, but it was due to user error."
   },
   {
@@ -27,7 +27,7 @@ const RequestList = () => {
   },
   {
     type: "Feedback",
-    status: "Approved",
+    status: "Pending",
     description: "Positive feedback on the new user interface update and suggestions for further improvements."
   }
 ]);

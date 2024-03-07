@@ -23,32 +23,26 @@
   
   .request-status {
     font-weight: bold;
-    cursor: text; /* Change cursor to text to indicate the status can be edited */
+    cursor: text; 
   }
-  
-  /* Adjusted for dynamic status editing */
   .request-status select {
     font-weight: bold;
-    cursor: pointer; /* Ensure the dropdown is clearly interactive */
+    cursor: pointer;
   }
-  
-  /* Status-specific styles applied to options for consistency */
-  .request-status.approved,
-  option[value="Approved"] { /* Apply styles to select options as well */
-    color: green;
-  }
-  
-  .request-status.pending,
-  option[value="Pending"] {
-    color: orange;
-  }
-  
-  .request-status.rejected,
-  option[value="Rejected"] {
-    color: red;
+  .request-status select option{
+    background-color: inherit;
   }
   .request-header {
     display: flex;
     justify-content: space-between; /* Aligns type to left and status to right */
     width: 100%; /* Ensures the header takes full width of its container */
+  }
+  .pending{
+    color : red
+  }
+  .completed{
+    color : green
+  }
+  .inprogress{
+    color : orange
   }
