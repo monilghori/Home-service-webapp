@@ -41,8 +41,9 @@ const Register = () => {
     email: "",
     password: "",
     gender: "male",
-    city: "",
     address: "",
+    city: "",
+    
   });
 
   const [serviceProviderdata, setServiceProviderData] = useState({
@@ -235,7 +236,7 @@ const Register = () => {
                           <td>
                             <input
                               type="checkbox"
-                              name="serviceType"
+                              name="services"
                               value="AC Repair"
                               onChange={handleCheckboxChange}
                               checked={serviceProviderdata.serviceType.includes(
@@ -251,7 +252,7 @@ const Register = () => {
                           <td>
                             <input
                               type="checkbox"
-                              name="serviceType"
+                              name="services"
                               value="Replacing Ceiling Fans"
                               onChange={handleCheckboxChange}
                               checked={serviceProviderdata.serviceType.includes(
@@ -267,7 +268,7 @@ const Register = () => {
                           <td>
                             <input
                               type="checkbox"
-                              name="serviceType"
+                              name="services"
                               value="Plumbing Repair"
                               onChange={handleCheckboxChange}
                               checked={serviceProviderdata.serviceType.includes(
@@ -283,7 +284,7 @@ const Register = () => {
                           <td>
                             <input
                               type="checkbox"
-                              name="serviceType"
+                              name="services"
                               value="Repairing Refrigerators"
                               onChange={handleCheckboxChange}
                               checked={serviceProviderdata.serviceType.includes(
@@ -299,7 +300,7 @@ const Register = () => {
                           <td>
                             <input
                               type="checkbox"
-                              name="serviceType"
+                              name="services"
                               value="Roof Repair"
                               onChange={handleCheckboxChange}
                               checked={serviceProviderdata.serviceType.includes(
@@ -315,7 +316,7 @@ const Register = () => {
                           <td>
                             <input
                               type="checkbox"
-                              name="serviceType"
+                              name="services"
                               value="Painting and Wall Repair"
                               onChange={handleCheckboxChange}
                               checked={serviceProviderdata.serviceType.includes(
