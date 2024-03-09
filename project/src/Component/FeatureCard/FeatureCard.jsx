@@ -16,7 +16,7 @@ export const FeatureCard = (props) => {
       <div className="card-content">
         <h1>{props.title}</h1>
         <p>{props.description}</p>
-        <button>View more &rarr;</button>
+
       </div>
     </div>
   );

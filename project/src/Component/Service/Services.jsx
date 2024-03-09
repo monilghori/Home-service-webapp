@@ -7,8 +7,9 @@ const Services = () => {
   const [servicesData, setServicesData] = useState([]);
 
   useEffect(() => {
-    axios("http://localhost:3000/services_provider")
+    axios.get("http://localhost:9090/api/serviceprovider/serviceproviders")
       .then((res) => {
+        console.log(res.data);
         setServicesData(res.data);
       })
       .catch((err) => {
@@ -20,7 +21,7 @@ const Services = () => {
 
   const ServiceCard = ({ service }) => (
     <div className="service-card">
-      <img src={service.logo} alt={service.name} className="service-logo" />
+      <img src="./src\assets\images\2.jpg" alt={service.name} className="service-logo" />
       <h3>{service.name}</h3>
       <p className="service-description">{service.description}</p>
       <button className="service-button" onClick={() => handleClick(service.id)}>Check</button>

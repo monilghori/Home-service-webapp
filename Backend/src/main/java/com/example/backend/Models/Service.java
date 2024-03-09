@@ -10,17 +10,16 @@ public class Service {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String name;
 
-    @ManyToMany(mappedBy = "services")
-    private Set<ServiceProvider> serviceProviders = new HashSet<>();
 
     public Service() {
     }
 
-    public Service(String name, Set<ServiceProvider> serviceProviders) {
+    public Service(String name) {
         this.name = name;
-        this.serviceProviders = serviceProviders;
+
     }
 
     public int getId() {
@@ -39,11 +38,4 @@ public class Service {
         this.name = name;
     }
 
-    public Set<ServiceProvider> getServiceProviders() {
-        return serviceProviders;
-    }
-
-    public void setServiceProviders(Set<ServiceProvider> serviceProviders) {
-        this.serviceProviders = serviceProviders;
-    }
 }

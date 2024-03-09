@@ -10,5 +10,6 @@ public interface UserService {
 
     public User addUser(User user);
     public ResponseEntity verifyUser(User user);
+    public boolean checkUser(String email);
 
 }

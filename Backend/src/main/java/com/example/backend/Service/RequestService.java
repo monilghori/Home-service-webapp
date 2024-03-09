@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface RequestService {
     public List<Request> findAll();
+    public Request createRequest(Request request);
 }

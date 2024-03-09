@@ -1,11 +1,14 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import axios from "axios"; // Don't forget to import axios if not imported
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+
 import "./register.css";
 
 const Register = () => {
   const [role, setRole] = useState("");
   const [error, setError] = useState("");
+
+  const navigate = useNavigate();
 
   const cities = [
     "Ahmedabad",
@@ -43,14 +46,13 @@ const Register = () => {
     gender: "male",
     address: "",
     city: "",
-    
   });
 
   const [serviceProviderdata, setServiceProviderData] = useState({
     name: "",
     email: "",
     password: "",
-    serviceType: [],
+    services: [],
     description: "",
     city: "",
   });
@@ -59,7 +61,10 @@ const Register = () => {
     setData({ ...userData, [e.target.name]: e.target.value });
   };
   const handleChangesp = (e) => {
-    setServiceProviderData({ ...serviceProviderdata, [e.target.name]: e.target.value });
+    setServiceProviderData({
+      ...serviceProviderdata,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleRadioChange = (event) => {
@@ -74,12 +79,12 @@ const Register = () => {
     if (checked) {
       setServiceProviderData({
         ...serviceProviderdata,
-        serviceType: [...serviceProviderdata.serviceType, value],
+        services: [...serviceProviderdata.services, value],
       });
     } else {
       setServiceProviderData({
         ...serviceProviderdata,
-        serviceType: serviceProviderdata.serviceType.filter(
+        services: serviceProviderdata.services.filter(
           (service) => service !== value
         ),
       });
@@ -92,16 +97,27 @@ const Register = () => {
       let url;
       {
         role === "User"
-          ? (url = "http://localhost:3000/student/createstudent")
-          : (url = "http://localhost:3000/faculty/createfaculty");
+          ? (url = "http://localhost:9090/api/user/register")
+          : (url = "http://localhost:9090/api/serviceprovider/register");
       }
-
-      const res = await axios.put(
+      const user = userData;
+      let update = serviceProviderdata.services;
+      if (role === "Service Provider") {
+        update = serviceProviderdata.services.map((service) => {
+          return ({name : service});
+        });
+      }
+      const serviceprovider = {...serviceProviderdata, services: update};
+      const res = await axios.post(
         url,
-        role === "User" ? userData : serviceProviderdata
+        role === "User" ? user : serviceprovider,
       );
-      console.log(res.data.message);
-      navigate("../login"); 
+      if (res.data) {
+        console.log("Successfully registered!");
+        navigate("../login");
+      } else {
+        setError("User already exists! Please login.");
+      }
     } catch (error) {
       if (
         error.response &&
@@ -218,6 +234,13 @@ const Register = () => {
                     required
                     onChange={handleChangesp}
                   />
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Name"
+                    required
+                    onChange={handleChangesp}
+                  />
                   <div className="description">
                     <label>Description :</label>
                     <textarea
@@ -228,7 +251,7 @@ const Register = () => {
                     ></textarea>
                   </div>
 
-                  <div >
+                  <div>
                     <label>Services Offered:</label>
                     <div className="checkboxes">
                       <table>
@@ -239,7 +262,7 @@ const Register = () => {
                               name="services"
                               value="AC Repair"
                               onChange={handleCheckboxChange}
-                              checked={serviceProviderdata.serviceType.includes(
+                              checked={serviceProviderdata.services.includes(
                                 "AC Repair"
                               )}
                             />
@@ -255,7 +278,7 @@ const Register = () => {
                               name="services"
                               value="Replacing Ceiling Fans"
                               onChange={handleCheckboxChange}
-                              checked={serviceProviderdata.serviceType.includes(
+                              checked={serviceProviderdata.services.includes(
                                 "Replacing Ceiling Fans"
                               )}
                             />
@@ -271,7 +294,7 @@ const Register = () => {
                               name="services"
                               value="Plumbing Repair"
                               onChange={handleCheckboxChange}
-                              checked={serviceProviderdata.serviceType.includes(
+                              checked={serviceProviderdata.services.includes(
                                 "Plumbing Repair"
                               )}
                             />
@@ -287,7 +310,7 @@ const Register = () => {
                               name="services"
                               value="Repairing Refrigerators"
                               onChange={handleCheckboxChange}
-                              checked={serviceProviderdata.serviceType.includes(
+                              checked={serviceProviderdata.services.includes(
                                 "Repairing Refrigerators"
                               )}
                             />
@@ -303,7 +326,7 @@ const Register = () => {
                               name="services"
                               value="Roof Repair"
                               onChange={handleCheckboxChange}
-                              checked={serviceProviderdata.serviceType.includes(
+                              checked={serviceProviderdata.services.includes(
                                 "Roof Repair"
                               )}
                             />
@@ -319,7 +342,7 @@ const Register = () => {
                               name="services"
                               value="Painting and Wall Repair"
                               onChange={handleCheckboxChange}
-                              checked={serviceProviderdata.serviceType.includes(
+                              checked={serviceProviderdata.services.includes(
                                 "Painting and Wall Repair"
                               )}
                             />

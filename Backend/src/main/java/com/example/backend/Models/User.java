@@ -15,20 +15,17 @@ public class User {
     private String gender;
     private String address;
     private String city;
-    @OneToMany(mappedBy = "user")
-    private Set<Request> requests = new HashSet<>();
 
     public User() {
     }
 
-    public User(String name, String email, String password, String gender, String address, String city, Set<Request> requests) {
+    public User(String name, String email, String password, String gender, String address, String city) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.gender = gender;
         this.address = address;
         this.city = city;
-        this.requests = requests;
     }
 
     public int getId() {
@@ -85,13 +82,5 @@ public class User {
 
     public void setCity(String city) {
         this.city = city;
-    }
-
-    public Set<Request> getRequests() {
-        return requests;
-    }
-
-    public void setRequests(Set<Request> requests) {
-        this.requests = requests;
     }
 }

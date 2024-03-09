@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
+
 @Service
 public class UserServiceImp implements UserService{
     private UserRepository userRepository;
@@ -24,7 +27,13 @@ public class UserServiceImp implements UserService{
 
     @Override
     public User addUser(User user) {
-        userRepository.save(user);
+        if(checkUser(user.getEmail()))
+        {
+           return null;
+        }else{
+            userRepository.save(user);
+        }
+
         return user;
     }
 
@@ -35,9 +44,20 @@ public class UserServiceImp implements UserService{
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("User is not found");
 
         if(check.getPassword().equals(user.getPassword()))
-            return ResponseEntity.ok(user);
+            return ResponseEntity.ok(check);
         else
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Credential is not matched");
+    }
+
+    @Override
+    public boolean checkUser(String email) {
+        User check = userRepository.findByEmail(email);
+        if(check == null){
+            return FALSE;
+        }
+        else {
+            return TRUE;
+        }
     }
 
 }

@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Link } from "react-router-dom"
+import { Link , useNavigate} from "react-router-dom";
+import axios from "axios";
 import "./login.css";
 
 const Login = () => {
@@ -8,7 +9,7 @@ const Login = () => {
     email: "",
     password: "",
   });
-
+  const navigate = useNavigate();
   const [error, setError] = useState("");
 
   const handleChange = (e) => {
@@ -22,59 +23,45 @@ const Login = () => {
       let res;
 
       if (role === "User") {
-        url = "http://localhost:3000/student/login";
-
-        res = await axios.post(
-          url,
-          {
-            email: data.email,
-            password: data.password,
-          },
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-        console.log(res.data);
-        if (res.data.success === true) {
-          navigate("../home");
-
-          localStorage.clear();
-          localStorage.setItem("user", JSON.stringify());
-        } else {
-          setError(res.data.message);
+        url = "http://localhost:9090/api/user/login";
+        const user = {
+          email: data.email,
+          password: data.password,
+        };
+        res = await axios
+          .post(url, user)
+          .then((res) => {
+            console.log(res.data);
+            localStorage.clear();
+            localStorage.setItem("user", JSON.stringify(res.data));
+            navigate("../home");
+          })
+          .catch((err) => {
+            setError(err.response.data);
+          });
+      } else if (role === "Service Provider") {
+        url = "http://localhost:9090/api/serviceprovider/login";
+        const  serviceprovider = {
+          email: data.email,
+          password: data.password,
         }
-      } 
-      else if (role === "Service Provider") {
-        url = "http://localhost:3000/faculty/login";
-
         res = await axios.post(
           url,
-          {
-            email: data.email,
-            password: data.password,
-          },
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-
-        if (res.data.success === true) {
+          serviceprovider
+        ).then((res) => {
+          localStorage.clear();
+          localStorage.setItem("provider", JSON.stringify(res.data));
           navigate("../requests");
-          console.log(res.data);
-          localStorage.clear();
-          localStorage.setItem("serviceprovider", JSON.stringify()); 
-        } else {
-          setError(res.data.message);
-        }
-      } 
-       else {
-          setError(res.data.message);
-        }
+        })
+        .catch((err) => {
+          setError(err.response.data);
+        });;
+
+      } else {
+        setError(res.data.message);
+      }
     } catch (error) {
+      console.log(error);
       if (
         error.response &&
         error.response.status >= 400 &&
@@ -92,7 +79,7 @@ const Login = () => {
           <h1 style={{ textAlign: "center" }}>Login</h1>
           <div className="form">
             <form className="login-form" onSubmit={handleSubmit}>
-            <select
+              <select
                 value={role}
                 onChange={(e) => setRole(e.target.value)}
                 className="login-select"
@@ -121,7 +108,9 @@ const Login = () => {
 
               {error && <div className="error_msg">{error}</div>}
 
-              <button type="submit" className="login-btn">Login</button>
+              <button type="submit" className="login-btn">
+                Login
+              </button>
               <p className="message">
                 Not Registerd? <Link to="/register">Create an account</Link>
               </p>
@@ -129,10 +118,7 @@ const Login = () => {
           </div>
         </div>
         <div className="img">
-          <img
-            src="./src\assets\images\1.jpg"
-            className="img-login"
-          ></img>
+          <img src="./src\assets\images\1.jpg" className="img-login"></img>
         </div>
       </div>
     </>
