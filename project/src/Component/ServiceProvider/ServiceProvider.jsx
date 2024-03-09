@@ -45,6 +45,7 @@ const ServiceProvider = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(formInputs);
     const userdata = JSON.parse(localStorage.getItem("user"));
     try {
       const servicedata = await axios
@@ -55,16 +56,17 @@ const ServiceProvider = () => {
         .catch((err) => {
           throw err;
         });
+        console.log(servicedata);
         const update = {
             ...formInputs,
-            service: servicedata,
-            user: userdata,
-            serviceprovider: servicesData,
+            service:{id : servicedata.id},
+            user: {id : userdata.id},
+            serviceProvider: {id : servicesData.id},
           }
           console.log(update);
       await axios
         .post("http://localhost:9090/api/request/create", update)
-        .then((res) => {
+        .then(async (res) => {
           setIsModalOpen(false);
           setFormInputs({})
           toast.success("Service Booked Successfully", {
@@ -94,6 +96,7 @@ const ServiceProvider = () => {
         closeButton: false,
       });
     }
+    console.log(formInputs);
   };
 
   return (

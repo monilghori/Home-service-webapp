@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 
 import "./register.css";
 
@@ -113,10 +114,29 @@ const Register = () => {
         role === "User" ? user : serviceprovider,
       );
       if (res.data) {
-        console.log("Successfully registered!");
+        toast.success("Register Successfully", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          closeButton: false,
+        });
         navigate("../login");
       } else {
         setError("User already exists! Please login.");
+        toast.error("User already exists! Please login.", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          closeButton: false,
+        });
       }
     } catch (error) {
       if (

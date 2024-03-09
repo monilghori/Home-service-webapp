@@ -4,6 +4,7 @@ import com.example.backend.Models.Service;
 import com.example.backend.Models.ServiceProvider;
 import com.example.backend.Models.User;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Future;
 
 import java.util.Date;
 @Entity
@@ -12,6 +13,7 @@ public class Request {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String status  = "Pending";
+//    @Future(message = "The event date must be in the future")
     private Date date;
     private String description;
     @ManyToOne

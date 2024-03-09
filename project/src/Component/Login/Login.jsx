@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link , useNavigate} from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import "./login.css";
 
@@ -34,10 +35,30 @@ const Login = () => {
             console.log(res.data);
             localStorage.clear();
             localStorage.setItem("user", JSON.stringify(res.data));
+            toast.success("Login Successfully", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              closeButton: false,
+            });
             navigate("../home");
           })
           .catch((err) => {
             setError(err.response.data);
+            toast.error(err.response.data, {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              closeButton: false,
+            });
           });
       } else if (role === "Service Provider") {
         url = "http://localhost:9090/api/serviceprovider/login";
@@ -51,10 +72,30 @@ const Login = () => {
         ).then((res) => {
           localStorage.clear();
           localStorage.setItem("provider", JSON.stringify(res.data));
+          toast.success("Login Successfully", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            closeButton: false,
+          });
           navigate("../requests");
         })
         .catch((err) => {
           setError(err.response.data);
+          toast.error(err.response.data, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            closeButton: false,
+          });
         });;
 
       } else {
