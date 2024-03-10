@@ -27,8 +27,6 @@ public class ServiceProviderController {
 
     @PostMapping(value = "/register")
     public ResponseEntity addUser(@RequestBody ServiceProvider serviceProvider){
-        System.out.println("called");
-        System.out.println(serviceProvider.getServices());
         serviceProvider = serviceProviderService.addUser(serviceProvider);
         return ResponseEntity.ok(serviceProvider);
     }
