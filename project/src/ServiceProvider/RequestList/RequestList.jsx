@@ -1,62 +1,105 @@
-import React, { useState } from 'react';
-import './RequestList.css';
-import Request from '../Request/Request';
+import React, { useState, useEffect } from "react";
+import "./RequestList.css";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import Request from "../Request/Request";
 
 const RequestList = () => {
-  
-  const [requests, setRequests] = useState([ 
-  {
-    type: "Technical Support",
-    status: "Pending",
-    description: "The user reports an issue with logging into their account despite entering the correct credentials."
-  },
-  {
-    type: "Feature Request",
-    status: "Pending",
-    description: "Request to add a dark mode feature to the application for better nighttime usability."
-  },
-  {
-    type: "Bug Report",
-    status: "Pending",
-    description: "Submission of a bug where user profiles were not saving updated information, but it was due to user error."
-  },
-  {
-    type: "Account Inquiry",
-    status: "Pending",
-    description: "A question regarding billing cycles and how to change payment methods."
-  },
-  {
-    type: "Feedback",
-    status: "Pending",
-    description: "Positive feedback on the new user interface update and suggestions for further improvements."
-  }
-]);
-const [expandedRequestId, setExpandedRequestId] = useState(null);
+  const [requests, setRequests] = useState([]);
+  const [expandedRequestId, setExpandedRequestId] = useState(null);
+  const [authUser, setAuthUser] = useState(null); // useState for authUser
+  const [provider, setProvider] = useState(null); // useState for provider
+  const fetchData = async () => {
+    const storedAuthUser = JSON.parse(localStorage.getItem("user"));
+    const storedProvider = JSON.parse(localStorage.getItem("provider"));
 
-  const toggleDescription = (index) => {
-    if (expandedRequestId === index) {
-      setExpandedRequestId(null);
+    setAuthUser(storedAuthUser);
+    setProvider(storedProvider);
+
+    if (storedAuthUser) {
+      try {
+        const res = await axios.get(
+          `http://localhost:9090/api/request/requests/user/${storedAuthUser.id}`
+        );
+        setRequests(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    } else if (storedProvider) {
+      try {
+        const res = await axios.get(
+          `http://localhost:9090/api/request/requests/serviceprovider/${storedProvider.id}`
+        );
+        setRequests(res.data);
+      } catch (err) {
+        console.log(err);
+      }
     } else {
-      setExpandedRequestId(index);
+      console.log("Please login first");
     }
   };
 
-  const handleStatusChange = (index, newStatus) => {
-    const updatedRequests = requests.map((request, reqIndex) =>
-      reqIndex === index ? { ...request, status: newStatus } : request
-    );
-    setRequests(updatedRequests);
+  useEffect(() => {
+
+    fetchData();
+  }, []);
+
+  const toggleDescription = (index) => {
+    setExpandedRequestId(expandedRequestId === index ? null : index);
+  };
+
+  const handleStatusChange = async (id, newStatus) => {
+    console.log(newStatus);
+
+    const request = { status: newStatus };
+    console.log(request);
+
+    const res = await axios
+      .patch(`http://localhost:9090/api/request/update/${id}`, request)
+      .then((res) => {
+        fetchData();
+        toast.success("Change Successfully", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          closeButton: false,
+        });
+      })
+      .catch((err) => {
+        toast.error("Failed", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          closeButton: false,
+        });
+      });
   };
 
   return (
     <div className="request-list">
+      {requests.length === 0 ? (
+        <div className="error-message">There are no requests.</div>
+      ) : null}
       {requests.map((request, index) => (
         <Request
           key={index}
           request={request}
           isExpanded={expandedRequestId === index}
           onToggleDescription={() => toggleDescription(index)}
-          onStatusChange={(newStatus) => handleStatusChange(index, newStatus)}
+          onStatusChange={
+            provider
+              ? (newStatus) => handleStatusChange(request.id, newStatus)
+              : undefined
+          }
+          edit={provider != null}
         />
       ))}
     </div>

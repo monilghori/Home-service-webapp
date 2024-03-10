@@ -22,7 +22,7 @@ function App() {
           <Route path="/aboutus" element={<AboutUs />} />
           <Route path="/servicesprovider" element={<Services />} />
           <Route path="/servicesprovider/:id" element={<ServiceProvider />} />
-
+          <Route path="/request" element={<RequestList />} />
           <Route path="/requests" element={<RequestList />} />
         </Routes>
       </BrowserRouter>

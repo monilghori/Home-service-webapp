@@ -42,4 +42,21 @@ public class RequestServiceImp implements RequestService{
         requestRepository.save(request);
         return request;
     }
+
+    @Override
+    public List<Request> findAllByUserId(int id) {
+        return requestRepository.findAllByUserId(id);
+    }
+    @Override
+    public List<Request> findAllByServiceProviderId(int id) {
+        return requestRepository.findAllByServiceProviderId(id);
+    }
+
+    @Override
+    public Request updateRequest(int id, Request request) {
+        Request r = requestRepository.findById(id);
+        r.setStatus(request.getStatus());
+        Request data = requestRepository.save(r);
+        return data;
+    }
 }

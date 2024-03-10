@@ -3,3 +3,8 @@
     flex-direction: column;
     padding: 20px;
   }
+  .error-message {
+    color: slategrey;
+    text-align: center;
+    font-size: x-large;
+  }

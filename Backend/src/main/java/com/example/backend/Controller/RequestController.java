@@ -25,9 +25,13 @@ public class RequestController {
         this.requestService = requestService;
     }
 
-    @GetMapping("/requests")
-    List<Request> findAll(){
-        return requestService.findAll();
+    @GetMapping("/requests/user/{id}")
+    List<Request> findAllForUser(@PathVariable int id){
+        return requestService.findAllByUserId(id);
+    }
+    @GetMapping("/requests/serviceprovider/{id}")
+    List<Request> findAllForServiceProvider(@PathVariable int id){
+        return requestService.findAllByServiceProviderId(id);
     }
 
     @PostMapping("/create")
@@ -45,5 +49,10 @@ public class RequestController {
 //        }
         Request r = requestService.createRequest(request);
         return ResponseEntity.ok(r);
+    }
+    @PatchMapping("/update/{id}")
+    Request updateRequest(@PathVariable int id ,@RequestBody Request request)
+    {
+        return requestService.updateRequest(id,request);
     }
 }

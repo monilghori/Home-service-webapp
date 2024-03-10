@@ -28,6 +28,11 @@ const Headers = () => {
                   <Link to="/servicesprovider">Services provider</Link>
                 </li>
                 <li>
+                  <Link to="/request">
+                    Requests
+                  </Link>
+                </li>
+                <li>
                   <Link to="/aboutus">About Us</Link>
                 </li>
 
