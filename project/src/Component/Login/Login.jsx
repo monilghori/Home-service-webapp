@@ -159,7 +159,7 @@ const Login = () => {
           </div>
         </div>
         <div className="img">
-          <img src="./src\assets\images\1.jpg" className="img-login"></img>
+          <img src="./public\assets\images\1.jpg" className="img-login"></img>
         </div>
       </div>
     </>
