@@ -407,7 +407,7 @@ const Register = () => {
         </div>
         <div className="img">
           <img
-            src="./public\assets\images\1.jpg"
+            src="\assets\images\1.jpg"
             className="img-login"
             alt="image of home service"
           ></img>
